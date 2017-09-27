@@ -29,7 +29,9 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base . --inline --hot",
-    "pro": "webpack -p"
+    "pro": "webpack -p",
+    "buildpro": "NODE_ENV=production webpack"
+
   },
   "author": "",
   "license": "ISC"
