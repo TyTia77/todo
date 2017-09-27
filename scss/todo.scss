@@ -1,0 +1,11 @@
+ul{
+	list-style-type: none;
+
+	span{	
+		&:first-child{
+			&:hover{
+				cursor: pointer;
+			}	
+		}
+	}
+}
