@@ -1,11 +1,15 @@
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const debug   = process.env.NODE_ENV ? false : true;
 
 module.exports = {
-  // context: path.join(__dirname, "src"),
-  devtool: debug ? "inline-sourcemap" : null,
-  entry: "./js/client.js",
+  devtool: debug ? 'inline-sourcemap' : false,
+
+  entry: './src/js/client.js',
+  
+  output: {
+    filename: './build/client.min.js'
+  },
+
   module: {
     loaders: [
       {
@@ -16,16 +20,18 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
         }
-      },{
+      },
+      {
           test: /\.scss$/,
           loader: 'style-loader!css-loader!sass-loader'
       }
     ]
   },
-  output: {
-    // path: __dirname + "/src/",
-    filename: "./client.min.js"
+
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.es6'],
   },
+
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
